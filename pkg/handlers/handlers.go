@@ -34,15 +34,32 @@ func (m *Repository) Home(w http.ResponseWriter, r *http.Request) {
 	render.RenderTemplate(w, "home.page.html", &models.TemplateData{})
 }
 func (m *Repository) About(w http.ResponseWriter, r *http.Request) {
-	// perform logic
-	stringMap := make(map[string]string)
-	stringMap["test"] = "Hello, again."
-
-	remoteIP := m.App.Session.GetString(r.Context(), "remote_ip")
-	stringMap["remote_ip"] = remoteIP
 
 	//send the data to the template
-	render.RenderTemplate(w, "about.page.html", &models.TemplateData{
-		StringMap: stringMap,
-	})
+	render.RenderTemplate(w, "about.page.html", &models.TemplateData{})
+}
+func (m *Repository) Generals(w http.ResponseWriter, r *http.Request) {
+
+	//send the data to the template
+	render.RenderTemplate(w, "generals.page.html", &models.TemplateData{})
+}
+func (m *Repository) Majors(w http.ResponseWriter, r *http.Request) {
+
+	//send the data to the template
+	render.RenderTemplate(w, "majors.page.html", &models.TemplateData{})
+}
+func (m *Repository) Reserve(w http.ResponseWriter, r *http.Request) {
+
+	//send the data to the template
+	render.RenderTemplate(w, "reserve.page.html", &models.TemplateData{})
+}
+func (m *Repository) Contact(w http.ResponseWriter, r *http.Request) {
+
+	//send the data to the template
+	render.RenderTemplate(w, "contact.page.html", &models.TemplateData{})
+}
+func (m *Repository) Availability(w http.ResponseWriter, r *http.Request) {
+
+	//send the data to the template
+	render.RenderTemplate(w, "availability.page.html", &models.TemplateData{})
 }
