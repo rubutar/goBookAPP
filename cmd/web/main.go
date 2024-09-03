@@ -6,9 +6,9 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/rubutar/goBookAPP/pkg/config"
-	"github.com/rubutar/goBookAPP/pkg/handlers"
-	"github.com/rubutar/goBookAPP/pkg/render"
+	"github.com/rubutar/goBookAPP/internal/config"
+	"github.com/rubutar/goBookAPP/internal/handlers"
+	"github.com/rubutar/goBookAPP/internal/render"
 
 	"github.com/alexedwards/scs/v2"
 )

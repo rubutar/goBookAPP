@@ -8,20 +8,27 @@ import (
 	"net/http"
 	"path/filepath"
 
-	"github.com/rubutar/goBookAPP/pkg/config"
-	"github.com/rubutar/goBookAPP/pkg/models"
+	"github.com/justinas/nosurf"
+	"github.com/rubutar/goBookAPP/internal/config"
+	"github.com/rubutar/goBookAPP/internal/models"
 )
 
 var functions = template.FuncMap{}
 
 var app *config.AppConfig
 
+// AddDefaultData adds data for all templates
+func AddDefaultData(td *models.TemplateData, r *http.Request) *models.TemplateData {
+	td.CSRFToken = nosurf.Token(r)
+	return td
+}
+
 // NewTemplates sets the config for the template package
 func NewTemplates(a *config.AppConfig) {
 	app = a
 }
 
-func RenderTemplate(w http.ResponseWriter, tmpl string, td *models.TemplateData) {
+func RenderTemplate(w http.ResponseWriter, r *http.Request, tmpl string, td *models.TemplateData) {
 	// get the template cache from the app config
 	var tc map[string]*template.Template
 	if app.UseCache {
@@ -36,6 +43,8 @@ func RenderTemplate(w http.ResponseWriter, tmpl string, td *models.TemplateData)
 	}
 
 	buf := new(bytes.Buffer)
+
+	td = AddDefaultData(td, r)
 
 	_ = t.Execute(buf, td)
 
